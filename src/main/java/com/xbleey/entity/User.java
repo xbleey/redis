@@ -11,6 +11,7 @@
 package com.xbleey.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -22,7 +23,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 123L;
 
     @Id
     @Column(name = " id")
