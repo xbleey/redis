@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.xbleey</groupId>
     <artifactId>redis</artifactId>
-    <version>1.0</version>
+    <version>1.4</version>
     <name>redis</name>
     <description>redis for Spring Boot</description>
 
