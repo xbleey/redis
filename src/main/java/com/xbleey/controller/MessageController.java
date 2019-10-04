@@ -46,11 +46,11 @@ public class MessageController {
     }
 
     @PostMapping(value = "/info")
-    public String saveMess(HttpServletResponse httpServletResponse, String infoMess) {
+    public String saveMess(HttpServletResponse httpServletResponse, String infoMess, String user) {
         if (infoMess == null || infoMess.equals("")) {
             throw new MessNullPoint();
         }
-        Message message = new Message(null, infoMess, new Date(), "#11EBF0");
+        Message message = new Message(user, infoMess, new Date(), "#11EBF0");
         messageService.saveMessage(message);
         return "redirect:/index";
     }

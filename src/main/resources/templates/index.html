@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="xbleey">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>xbleey的博客</title>
+    <title>xbleey</title>
 
     <link rel="canonical" href="#">
 
@@ -47,14 +47,20 @@
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">index <span
+                <a class="nav-link" href="/">主页<span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://github.com/xbleey">GitHub</a>
+                <a class="nav-link" href="https://github.com/xbleey">Github</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin">admin</a>
+                <a class="nav-link" href="/admin">管理后台</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/message">留言</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/update">更新</a>
             </li>
             <!--            <li class="nav-item">-->
             <!--                <a class="nav-link" href="https://getbootstrap.com/docs/4.3/examples/offcanvas/#">Switch account</a>-->
@@ -96,7 +102,7 @@
 
 <main role="main" class="container">
     <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-        <img class="mr-3" src="../pic.jpg" alt="" width="48" height="48">
+        <img class="mr-3" src="../pic.jpg" alt="" width="48" height="48" >
         <div class="lh-100">
             <h6 class="mb-0 text-white lh-100">xbleey</h6>
             <small>Since 2019-10-02</small>
@@ -108,14 +114,22 @@
         <form action="/info" method="post">
             <div class="media text-muted pt-3">
 
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <input type="text" class="form-control" placeholder="（最多50个中文字符）"
-                           name="infoMess" style="width: 130%"/>
-                </p>
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <input type="submit" value="提交留言" class="btn btn-primary" style="float:right;"/>
-                </p>
-
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                    </div>
+                    <input type="text" class="form-control" id="info" placeholder="不超过50个中文字符" name="infoMess" required="">
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">@</span>
+                    </div>
+                    <input type="text" class="form-control" name="user" id="username"  placeholder="用户名(不超过10个中文)" >
+                </div>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-success">submit</button>
+                </div>
             </div>
         </form>
     </div>
