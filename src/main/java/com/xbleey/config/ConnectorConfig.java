@@ -31,7 +31,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ConnectorConfig {
 
-/*
     @Bean
     public ServletWebServerFactory servletWebServerFactory() {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory() {
@@ -57,6 +56,5 @@ public class ConnectorConfig {
         connector.setRedirectPort(443);
         return connector;
     }
-*/
 
 }
