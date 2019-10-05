@@ -10,8 +10,10 @@
  */
 package com.xbleey.controller;
 
+import com.xbleey.compent.RedisUtils;
 import com.xbleey.entity.Message;
 import com.xbleey.exception.MessNullPoint;
+import com.xbleey.service.LoginService;
 import com.xbleey.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
@@ -36,14 +39,20 @@ public class MessageController {
 
     @Autowired
     MessageService messageService;
+    @Autowired
+    LoginService loginService;
+    @Autowired
+    RedisUtils redisUtils;
 
     @RequestMapping(value = {"/", "/index"})
-    public String index(Model model) {
+    public String index(HttpServletRequest request, Model model) {
+        System.out.println(loginService.isLogin(request));
         List<Message> messages = messageService.getAllMessages();
         model.addAttribute("messages", messages);
-        model.addAttribute("messNum", messages.size());
+        model.addAttribute("messNum", messageService.getMessNums());
         return "index";
     }
+
 
     @PostMapping(value = "/info")
     public String saveMess(HttpServletResponse httpServletResponse, String infoMess, String user) {

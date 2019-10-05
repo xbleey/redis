@@ -38,9 +38,14 @@ public class MessageService {
         return messageDao.findAll();
     }
 
-    @CacheEvict(value="message",key="'all'")
+    @Cacheable(cacheNames = "messNums", key = "'num'", sync = true)
+    public Integer getMessNums() {
+        return messageDao.getNums();
+    }
+
+    @CacheEvict(value = "message", key = "'all'")
     public void saveMessage(Message message) {
-        if(message.getUser()==null||message.getUser().equals("")){
+        if (message.getUser() == null || message.getUser().equals("")) {
             message.setUser("游客");
         }
         messageDao.save(message);

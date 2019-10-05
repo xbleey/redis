@@ -32,9 +32,10 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = " name")
+    @Column(name = "username")
     private String name;
-
+    @Column(name = "password")
+    private String password;
 
     public Integer getId() {
         return id;
@@ -52,12 +53,12 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
  

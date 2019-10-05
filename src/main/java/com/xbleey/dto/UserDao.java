@@ -23,4 +23,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserDao extends JpaRepository<User, Integer> {
     public User getFirstByid(int id);
+
+    public User getFirstByName(String username);
 }

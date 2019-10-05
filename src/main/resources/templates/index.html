@@ -102,7 +102,9 @@
 
 <main role="main" class="container">
     <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-        <img class="mr-3" src="../pic.jpg" alt="" width="48" height="48" >
+        <div style="margin-right: 8px;">
+            <img class="rounded-circle" src="../pic.jpg" alt="" width="48" height="48">
+        </div>
         <div class="lh-100">
             <h6 class="mb-0 text-white lh-100">xbleey</h6>
             <small>Since 2019-10-02</small>
@@ -113,24 +115,38 @@
         <h6 class="border-bottom border-gray pb-2 mb-0">留言栏</h6>
         <form action="/info" method="post">
             <div class="media text-muted pt-3">
-
                 <div class="input-group">
                     <div class="input-group-prepend">
                     </div>
-                    <input type="text" class="form-control" id="info" placeholder="不超过50个中文字符" name="infoMess" required="">
+                    <input type="text" class="form-control" id="info" placeholder="不超过50个中文字符" name="infoMess"
+                           required="">
                 </div>
             </div>
+
             <div class="media text-muted pt-3">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">@</span>
                     </div>
-                    <input type="text" class="form-control" name="user" id="username"  placeholder="用户名(不超过10个中文)" >
+                    <input type="text" class="form-control" name="user" id="username" placeholder="用户名(不超过10个中文)">
                 </div>
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-success">submit</button>
                 </div>
             </div>
+
+
+            <div class="media text-muted pt-3">
+                <div class="input-group">
+                    <div class="alert alert-success" role="alert">你已经填写好我们所有的信息了</div>
+                    <div class="alert alert-info" role="alert">你已经填写好我们所有的信息了</div>
+                    <div class="alert alert-danger" role="alert">你已经填写好我们所有的信息了</div>
+
+                </div>
+
+            </div>
+
+
         </form>
     </div>
 

@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.xbleey</groupId>
     <artifactId>redis</artifactId>
-    <version>1.4</version>
+    <version>1.7</version>
     <name>redis</name>
     <description>redis for Spring Boot</description>
 
@@ -52,6 +52,14 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.13</version>
+        </dependency>
+
     </dependencies>
 
     <build>

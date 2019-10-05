@@ -43,6 +43,10 @@ public class UserService {
         return userDao.getFirstByid(id);
     }
 
+    public User getOne(String username) {
+        return userDao.getFirstByName(username);
+    }
+
     public int deleteUser(int id) {
         userDao.deleteById(id);
         return id;
