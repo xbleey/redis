@@ -64,21 +64,20 @@ public class LoginController {
         }
 
 
-        model.addAttribute("param.error", true);
+        model.addAttribute("error", true);
         return "login";
     }
 
     @RequestMapping(value = "/logout")
     public String logout(HttpServletRequest request, Model model) {
         String userId = loginService.isLogin(request);
-        if ("noLogin".equals(userId)) {
-            model.addAttribute("param.logout", true);
-            return "index";
-        } else {
+        if (!"noLogin".equals(userId)) {
             redisUtils.del("user_" + userId);
         }
-        return "redirect:/index";
+        model.addAttribute("logout", true);
+        return "login";
     }
+
 
 
 }
