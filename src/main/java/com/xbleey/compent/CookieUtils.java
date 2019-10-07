@@ -21,11 +21,17 @@ import javax.servlet.http.Cookie;
  * @since 1.0.0
  */
 public class CookieUtils extends Cookie {
-    public CookieUtils(String name, String value) {
+    public CookieUtils(String name, String value,String path,Integer maxAge) {
         super(name, value);
+        this.setPath(path);
+        this.setMaxAge(maxAge);
     }
 
 
+
+    public Cookie getCookie(){
+        return this;
+    }
 }
  
 

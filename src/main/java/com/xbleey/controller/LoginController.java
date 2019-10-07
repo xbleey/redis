@@ -10,6 +10,7 @@
  */
 package com.xbleey.controller;
 
+import com.xbleey.compent.CookieUtils;
 import com.xbleey.compent.RedisUtils;
 import com.xbleey.compent.SHA1Utils;
 import com.xbleey.entity.User;
@@ -54,12 +55,14 @@ public class LoginController {
     public String login(Model model, HttpServletResponse response, @NotNull String username, @NotNull String password) {
         User user = userService.getOne(username);
         if (user.getPassword().equals(SHA1Utils.encodePassword(password))) {
-            Cookie cookie = new Cookie("user_login", String.valueOf(user.getId()));
-            cookie.setPath("/");
-            cookie.setMaxAge(60 * 60 * 24);
-            //cookie.setDomain(".xbleey.cn");
-            response.addCookie(cookie);
-            redisUtils.set("user_" + user.getId(), "login", 1800L);
+
+            /*存入本地的cookie*/
+            CookieUtils cookieUtils= new CookieUtils("user_login",String.valueOf(user.getId()),"/",60 * 60 * 24);
+            response.addCookie(cookieUtils.getCookie());
+
+            /*设置可过期的redis键值对保证登录时长*/
+            redisUtils.set("user_" + user.getId(), username, 1800L);
+
             return "redirect:/index";
         }
 

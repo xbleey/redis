@@ -46,8 +46,14 @@ public class MessageController {
 
     @RequestMapping(value = {"/", "/index"})
     public String index(HttpServletRequest request, Model model) {
-        System.out.println(loginService.isLogin(request));
+
         List<Message> messages = messageService.getAllMessages();
+
+        String loginInfo = loginService.isLogin(request);
+        if (!loginInfo.equals("noLogin")) {
+            String loginUserName = (String) redisUtils.get("user_" + loginInfo);
+            model.addAttribute("loginUserName", loginUserName);
+        }
         model.addAttribute("messages", messages);
         model.addAttribute("messNum", messageService.getMessNums());
         return "index";
