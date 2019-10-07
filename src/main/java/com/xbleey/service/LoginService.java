@@ -53,11 +53,7 @@ public class LoginService {
 
         /*查询redis有无记录，有则已经登录*/
         String redisKey = "user_" + userId;
-            if (redisUtils.get(redisKey) == null) {
-                return "noLogin";
-            }
-            return userId;
-
+        return redisUtils.get(redisKey) == null ? "noLogin" : userId;
     }
 }
  
