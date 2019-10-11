@@ -41,6 +41,7 @@ public class Message implements Serializable {
 
     @Column(name = " date")
     private Date date;
+
     @Column(name = " color")
     private String color;
 
