@@ -22,3 +22,9 @@ spring:
         max-idle: 8
         min-idle: 0
     timeout: 5000ms
+server:
+  port: 443
+  ssl:
+    key-store: classpath:2893913_xbleey.cn.pfx
+    key-store-password: f7UdHUdi
+    key-store-type: PKCS12

@@ -28,6 +28,10 @@ public interface MessageDao extends JpaRepository<Message, Integer> {
     @Query(value = "select * from message order by date desc limit 3", nativeQuery = true)
     public List<Message> findThree();
 
+    @Override
+    @Query(value = "select * from message order by date desc", nativeQuery = true)
+    public List<Message> findAll();
+
     @Query(value = "select count(id) from message", nativeQuery = true)
     public Integer getNums();
 }

@@ -10,6 +10,7 @@
  */
 package com.xbleey.controller;
 
+import com.xbleey.compent.ColorUtils;
 import com.xbleey.compent.RedisUtils;
 import com.xbleey.entity.Message;
 import com.xbleey.exception.MessNullPoint;
@@ -43,6 +44,8 @@ public class IndexController {
     LoginService loginService;
     @Autowired
     RedisUtils redisUtils;
+    @Autowired
+    ColorUtils colorUtils;
 
 
     @RequestMapping(value = {"/", "/index"})
@@ -65,7 +68,7 @@ public class IndexController {
         if (infoMess == null || infoMess.equals("")) {
             throw new MessNullPoint();
         }
-        Message message = new Message(user, infoMess, new Date(), "#11EBF0");
+        Message message = new Message(user, infoMess, new Date(), colorUtils.getOneColor());
         messageService.saveMessage(message);
         return "redirect:/index";
     }
