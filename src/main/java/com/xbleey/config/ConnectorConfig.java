@@ -31,7 +31,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ConnectorConfig {
 
-/*
 
     @Bean
     public ServletWebServerFactory servletWebServerFactory() {
@@ -59,6 +58,5 @@ public class ConnectorConfig {
         return connector;
     }
 
-*/
 
 }
