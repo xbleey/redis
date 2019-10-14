@@ -13,6 +13,7 @@ package com.xbleey.service;
 import com.xbleey.compent.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -54,6 +55,14 @@ public class LoginService {
         /*查询redis有无记录，有则已经登录*/
         String redisKey = "user_" + userId;
         return redisUtils.get(redisKey) == null ? "noLogin" : userId;
+    }
+
+    public void authInfo(HttpServletRequest request, Model model){
+        String loginInfo = isLogin(request);
+        if (!loginInfo.equals("noLogin")) {
+            String loginUserName = (String) redisUtils.get("user_" + loginInfo);
+            model.addAttribute("loginUserName", loginUserName);
+        }
     }
 }
  

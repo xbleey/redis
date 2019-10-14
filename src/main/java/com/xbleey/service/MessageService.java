@@ -15,6 +15,7 @@ import com.xbleey.entity.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +34,11 @@ public class MessageService {
     @Autowired
     MessageDao messageDao;
 
+    @Cacheable(cacheNames = "message", key = "'topThree'")
+    public List<Message> getTopThreeMessages() {
+        return messageDao.findThree();
+    }
+
     @Cacheable(cacheNames = "message", key = "'all'")
     public List<Message> getAllMessages() {
         return messageDao.findAll();
@@ -43,7 +49,7 @@ public class MessageService {
         return messageDao.getNums();
     }
 
-    @CacheEvict(value = "message", key = "'all'")
+    @Caching(evict = {@CacheEvict(value = "message", key = "'all'"), @CacheEvict(value = "message", key = "'topThree'")})
     public void saveMessage(Message message) {
         if (message.getUser() == null || message.getUser().equals("")) {
             message.setUser("游客");

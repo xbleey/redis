@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0053)https://getbootstrap.com/docs/4.3/examples/offcanvas/ -->
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="xbleey">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>xbleey</title>
+    <title>查看所有信息</title>
 
     <link rel="canonical" href="#">
 
@@ -38,7 +37,7 @@
 </head>
 <body class="bg-light">
 <!-- 引入topbar-->
-<div th:replace="common/bar::topbar"></div>
+<div th:replace="common/topbar::topbar"></div>
 
 <!-- 引入menu-->
 <div th:replace="common/menu::menu"></div>
@@ -56,46 +55,11 @@
         </div>
     </div>
 
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">留言栏</h6>
-        <form action="/info" method="post">
-            <div class="media text-muted pt-3">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                    </div>
-                    <input type="text" class="form-control" id="info" placeholder="不超过50个中文字符" name="infoMess"
-                           required="">
-                </div>
-            </div>
 
-            <div class="media text-muted pt-3">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">@</span>
-                    </div>
-                    <input type="text" class="form-control" name="user" id="username" placeholder="用户名(不超过10个中文)" th:value="${loginUserName}">
-                </div>
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-success">submit</button>
-                </div>
-            </div>
-
-
-            <div class="media text-muted pt-3">
-                <div class="input-group">
-                    <div class="alert alert-success" role="alert">你已经填写好我们所有的信息了</div>
-                    <div class="alert alert-info" role="alert">你已经填写好我们所有的信息了</div>
-                    <div class="alert alert-danger" role="alert">你已经填写好我们所有的信息了</div>
-
-                </div>
-
-            </div>
-
-
-        </form>
-    </div>
+    <button class="btn btn-lg  btn-warning btn-block" type="button" onclick="returnToIndex()" style="width: 30%;">退出</button>
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
+
         <h6 class="border-bottom border-gray pb-2 mb-0">最新留言</h6>
         <div class="media text-muted pt-3" th:each="message : ${messages}">
             <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
@@ -110,31 +74,7 @@
                 <strong class="d-block text-gray-dark">更新于：<span th:text="${#dates.format(message.getDate(),'yyyy-MM-dd HH:mm:ss')}"></span></strong>
             </p>
         </div>
-        <small class="d-block text-right mt-3">
-            <a href="#">所有留言</a>
-        </small>
-    </div>
 
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">更新</h6>
-        <div class="media text-muted pt-3">
-            <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
-                 preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#007bff"></rect>
-                <text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
-            </svg>
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <strong class="text-gray-dark">v1.0 可以进行文字留言</strong>
-                    <a href="#">本次更新内容</a>
-                </div>
-                <span class="d-block">@xbleey</span>
-            </div>
-        </div>
-        <small class="d-block text-right mt-3">
-            <a href="#">所有更新</a>
-        </small>
     </div>
 
     <div style="text-align: center" >Copyright © 2019 xbleey<span>  </span><a href="http://www.beian.miit.gov.cn/">粤ICP备19128210号</a></div>
@@ -152,6 +92,10 @@
         integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
         crossorigin="anonymous"></script>
 <script src="../offcanvas.js"></script>
-
+<script type="text/javascript">
+    function returnToIndex() {
+        window.location.href = "/index";
+    }
+</script>
 </body>
 </html>
