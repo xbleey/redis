@@ -10,15 +10,20 @@
  */
 package com.xbleey.controller;
 
+import com.xbleey.compent.ColorUtils;
 import com.xbleey.entity.Message;
+import com.xbleey.exception.MessNullPoint;
 import com.xbleey.service.LoginService;
 import com.xbleey.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +40,8 @@ public class MessageController {
     LoginService loginService;
     @Autowired
     MessageService messageService;
+    @Autowired
+    ColorUtils colorUtils;
 
 
     @GetMapping(value = "/message")
@@ -49,6 +56,17 @@ public class MessageController {
         model.addAttribute("messages", messages);
         model.addAttribute("messNum", messageService.getMessNums());
         return "message/message";
+    }
+
+    @PostMapping(value = "/info")
+    public String saveMess(HttpServletResponse response, String infoMess, String user) {
+        if (infoMess == null || infoMess.equals("")) {
+            throw new MessNullPoint();
+        }
+        Message message = new Message(user, infoMess, new Date(), colorUtils.getOneColor());
+        messageService.saveMessage(message);
+        response.setStatus(201);
+        return "redirect:/index";
     }
 }
  

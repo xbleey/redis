@@ -51,6 +51,13 @@ public class UserService {
         userDao.deleteById(id);
         return id;
     }
+
+    public Boolean existUsername(String username) {
+        if (username == null && username.equals("")) {
+            return null;
+        }
+        return userDao.existsByName(username);
+    }
 }
  
 

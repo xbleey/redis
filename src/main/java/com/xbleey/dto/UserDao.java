@@ -25,4 +25,6 @@ public interface UserDao extends JpaRepository<User, Integer> {
     public User getFirstByid(int id);
 
     public User getFirstByName(String username);
+
+    public boolean existsByName(String username);
 }

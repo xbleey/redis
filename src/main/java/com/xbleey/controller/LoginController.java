@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
@@ -57,9 +56,8 @@ public class LoginController {
         if (user.getPassword().equals(SHA1Utils.encodePassword(password))) {
 
             /*存入本地的cookie*/
-            CookieUtils cookieUtils= new CookieUtils("user_login",String.valueOf(user.getId()),"/",60 * 60 * 24);
+            CookieUtils cookieUtils = new CookieUtils("user_login", String.valueOf(user.getId()), "/", 60 * 60 * 24);
             response.addCookie(cookieUtils.getCookie());
-
             /*设置可过期的redis键值对保证登录时长*/
             redisUtils.set("user_" + user.getId(), username, 1800L);
 
@@ -80,7 +78,6 @@ public class LoginController {
         model.addAttribute("logout", true);
         return "login";
     }
-
 
 
 }

@@ -43,10 +43,11 @@ public class ColorUtils {
         colors.put(9, "#9AFF9A");
         colors.put(10, "#8B2500");
         colors.put(11, "#00B2EE");
+        colors.put(12, "#00a893");
     }
 
     public String getOneColor() {
-        return colors.get(random.nextInt(11));
+        return colors.get(random.nextInt(12));
     }
 }
  

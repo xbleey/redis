@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Junhao">
-    <title>系统登录</title>
+    <title>系统注册</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
@@ -32,29 +32,33 @@
     <link href="../floating-label.css" rel="stylesheet">
 </head>
 <body>
-<form class="form-signin" th:action="@{/login}" method="post">
+<form class="form-signin" th:action="@{/register}" method="post">
     <div class="text-center mb-4">
         <img class="mb-4" src="../favicon.ico" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">仅仅是登录而已</h1>
+        <h1 class="h3 mb-3 font-weight-normal">仅仅是注册而已</h1>
 
     </div>
 
     <div class="form-label-group">
-        <input type="text" id="inputText" name="username" class="form-control" placeholder="您的用户名" required autofocus>
+        <input type="text" id="inputText" name="userName" class="form-control" placeholder="新的用户名" required autofocus>
         <label for="inputText">用户名</label>
     </div>
 
     <div class="form-label-group">
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="请输入密码" required>
+        <input type="password" id="inputPassword" name="passWord" class="form-control" placeholder="请输入密码" required>
         <label for="inputPassword">密码</label>
     </div>
+    <div class="form-label-group">
+        <input type="password" id="CheckPassword" name="checkPassWord" class="form-control" placeholder="请再次输入密码" required>
+        <label for="inputPassword">确认密码</label>
+    </div>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-    <button class="btn btn-lg  btn-success btn-block" type="button" onclick="returnToRegister()">注册</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">注册帐号</button>
+    <button class="btn btn-lg  btn-success btn-block" type="button" onclick="returnToLogin()">返回登录页面</button>
     <button class="btn btn-lg  btn-warning btn-block" type="button" onclick="returnToIndex()">退出</button>
 
-    <p class="mt-5 mb-3 text-muted text-center" th:text="帐号密码无效" th:if="${error}"></p>
-    <p class="mt-5 mb-3 text-muted text-center" th:text="您已经登出" th:if="${logout}"></p>
+    <p class="mt-5 mb-3 text-muted text-center" th:text="两次输入密码不一致" th:if="${error}"></p>
+    <p class="mt-5 mb-3 text-muted text-center" th:text="用户名已经存在了" th:if="${same}"></p>
     <p class="mt-5 mb-3 text-muted text-center">&copy; 2019-2019</p>
 </form>
 </body>
@@ -63,8 +67,8 @@
     function returnToIndex() {
         window.location.href = "/index";
     }
-    function returnToRegister() {
-        window.location.href = "/register";
+    function returnToLogin() {
+        window.location.href = "/login";
     }
 </script>
 </html>
