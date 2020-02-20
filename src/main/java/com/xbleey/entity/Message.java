@@ -29,20 +29,20 @@ public class Message implements Serializable {
     private static final long serialVersionUID = 124L;
 
     @Id
-    @Column(name = " id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = " user")
+    @Column(name = "user")
     private String user;
 
-    @Column(name = " words")
+    @Column(name = "words")
     private String words;
 
-    @Column(name = " date")
+    @Column(name = "date")
     private Date date;
 
-    @Column(name = " color")
+    @Column(name = "color")
     private String color;
 
     public Message() {

@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://39.106.81.160:3306/normal?characterEncoding=utf8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&useSSL=false
-    username: xbleey
-    password: dongdong1
+    username: admin
+    password: admin123
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -13,7 +13,7 @@ spring:
     port: 6379
     database: 0
     host: 39.106.81.160
-    password: redis
+    password: dongdong1
     jedis:
       pool:
         max-active: 8
