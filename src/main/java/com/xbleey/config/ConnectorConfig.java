@@ -32,7 +32,6 @@ import org.springframework.context.annotation.Configuration;
 public class ConnectorConfig {
 
 
-
     @Bean
     public ServletWebServerFactory servletWebServerFactory() {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory() {
