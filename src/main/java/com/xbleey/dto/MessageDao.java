@@ -27,8 +27,8 @@ import java.util.List;
  */
 @Repository
 public interface MessageDao extends JpaRepository<Message, Integer> {
-    @Query(value = "select * from message order by date desc limit 5", nativeQuery = true)
-    public List<Message> findFive();
+    @Query(value = "select * from message order by date desc limit 10", nativeQuery = true)
+    public List<Message> findTen();
 
     @Query(value = "select * from message where date like ?1 order by date desc", nativeQuery = true)
     public List<Message> getListToday(String startDate);

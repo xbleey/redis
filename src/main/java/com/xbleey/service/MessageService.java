@@ -32,8 +32,8 @@ public class MessageService {
     @Autowired
     MessageDao messageDao;
 
-    public List<Message> getTopFiveMessages() {
-        return messageDao.findFive();
+    public List<Message> getTopTenMessages() {
+        return messageDao.findTen();
     }
 
     public List<Message> getAllMessages() {

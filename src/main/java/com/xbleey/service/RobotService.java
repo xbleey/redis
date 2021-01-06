@@ -32,11 +32,11 @@ public class RobotService {
     MessageService messageService;
 
 
-    @Scheduled(cron = "0 45 10 * * ? ")
+    @Scheduled(cron = "0 35 10 * * ? ")
     public void riceMsg() {
         try {
             obj = new ObjectMapper();
-            SentBody sentBody = new SentBody("text", new Text(build()));
+            SentBody sentBody = new SentBody("text", new Text(build(), new String[]{"陈诗华"}));
             String json = obj.writeValueAsString(sentBody);
             sent(json);
         } catch (Exception e) {
@@ -48,7 +48,7 @@ public class RobotService {
     public void callRiceMsg() {
         try {
             obj = new ObjectMapper();
-            SentBody sentBody = new SentBody("text", new Text("快来选午晚饭啊！link：http://8.129.102.0"));
+            SentBody sentBody = new SentBody("text", new Text("快来选午晚饭啊！link：http://8.129.102.0", new String[]{"@all"}));
             String json = obj.writeValueAsString(sentBody);
             sent(json);
         } catch (Exception e) {
@@ -65,13 +65,13 @@ public class RobotService {
         for (Message message : today.getMenus()) {
             sendMsg.append(message.getWords() + "（" + message.getNum() + "份）\n");
         }
-        sendMsg.append("\n合计：" + today.getRiceNum() + "份\n");
+        sendMsg.append("合计：" + today.getRiceNum() + "份\n");
 
-        sendMsg.append("晚餐：\n");
+        sendMsg.append("\n晚餐：\n");
         for (Message message : today.getMenus()) {
             sendMsg.append(message.getWords() + "（" + message.getNum() + "份）\n");
         }
-        sendMsg.append("\n合计：" + today.getRiceNum() + "份\n");
+        sendMsg.append("合计：" + today.getRiceNum() + "份\n");
         return sendMsg.toString();
     }
 

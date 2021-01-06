@@ -48,7 +48,7 @@ public class IndexController {
         loginService.authInfo(request, model);
 
         /*获取message数据*/
-        List<Message> messages = messageService.getTopFiveMessages();
+        List<Message> messages = messageService.getTopTenMessages();
 
         /*获取最近五天的菜单*/
         DayMenu today = messageService.getMenuByDays(0);
