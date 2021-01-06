@@ -11,6 +11,7 @@
 package com.xbleey.controller;
 
 import com.xbleey.compent.RedisUtils;
+import com.xbleey.entity.DayMenu;
 import com.xbleey.entity.Message;
 import com.xbleey.service.LoginService;
 import com.xbleey.service.MessageService;
@@ -47,10 +48,22 @@ public class IndexController {
         loginService.authInfo(request, model);
 
         /*获取message数据*/
-        List<Message> messages = messageService.getTopThreeMessages();
+        List<Message> messages = messageService.getTopFiveMessages();
+
+        /*获取最近五天的菜单*/
+        DayMenu today = messageService.getMenuByDays(0);
+        DayMenu minusOne = messageService.getMenuByDays(1);
+        DayMenu minusTwo = messageService.getMenuByDays(2);
+        DayMenu minusThree = messageService.getMenuByDays(3);
+        DayMenu minusFour = messageService.getMenuByDays(4);
 
         /*存入页面引擎*/
         model.addAttribute("messages", messages);
+        model.addAttribute("today", today);
+        model.addAttribute("minusOne", minusOne);
+        model.addAttribute("minusTwo", minusTwo);
+        model.addAttribute("minusThree", minusThree);
+        model.addAttribute("minusFour", minusFour);
         model.addAttribute("messNum", messageService.getMessNums());
         return "index";
     }

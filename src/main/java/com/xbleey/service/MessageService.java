@@ -11,11 +11,9 @@
 package com.xbleey.service;
 
 import com.xbleey.dto.MessageDao;
+import com.xbleey.entity.DayMenu;
 import com.xbleey.entity.Message;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,27 +32,32 @@ public class MessageService {
     @Autowired
     MessageDao messageDao;
 
-    @Cacheable(cacheNames = "message", key = "'topThree'")
-    public List<Message> getTopThreeMessages() {
-        return messageDao.findThree();
+    public List<Message> getTopFiveMessages() {
+        return messageDao.findFive();
     }
 
-    @Cacheable(cacheNames = "message", key = "'all'")
     public List<Message> getAllMessages() {
         return messageDao.findAll();
     }
 
-    @Cacheable(cacheNames = "messNums", key = "'num'", sync = true)
     public Integer getMessNums() {
         return messageDao.getNums();
     }
 
-    @Caching(evict = {@CacheEvict(value = "message", key = "'all'"), @CacheEvict(value = "message", key = "'topThree'")})
     public void saveMessage(Message message) {
-        if (message.getUser() == null || message.getUser().equals("")) {
-            message.setUser("游客");
+        if (message.getNum() != 0) {
+            messageDao.save(message);
         }
-        messageDao.save(message);
+    }
+
+    public DayMenu getMenuByDays(int beforeDay) {
+        DayMenu dayMenu = new DayMenu(beforeDay);
+        dayMenu.setMenus(messageDao.getListToday(dayMenu.getDate() + "%"));
+        return dayMenu;
+    }
+
+    public void delete(int messageId) {
+        messageDao.deleteById(messageId);
     }
 }
  

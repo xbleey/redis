@@ -34,7 +34,7 @@ public class Message implements Serializable {
     private Integer id;
 
     @Column(name = "user")
-    private String user;
+    private int num;
 
     @Column(name = "words")
     private String words;
@@ -48,8 +48,8 @@ public class Message implements Serializable {
     public Message() {
     }
 
-    public Message(String user, String words, Date date, String color) {
-        this.user = user;
+    public Message(int num, String words, Date date, String color) {
+        this.num = num;
         this.words = words;
         this.date = date;
         this.color = color;
@@ -67,12 +67,12 @@ public class Message implements Serializable {
         this.id = id;
     }
 
-    public String getUser() {
-        return user;
+    public int getNum() {
+        return num;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public String getWords() {
@@ -103,7 +103,7 @@ public class Message implements Serializable {
     public String toString() {
         return "Message{" +
                 "id=" + id +
-                ", user='" + user + '\'' +
+                ", user='" + num + '\'' +
                 ", words='" + words + '\'' +
                 ", date=" + date +
                 ", color='" + color + '\'' +
