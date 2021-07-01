@@ -36,14 +36,6 @@
     <link href="../offcanvas.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-<!-- 引入topbar-->
-<div th:replace="common/bar::topbar"></div>
-
-<!-- 引入menu-->
-<div th:replace="common/menu::menu"></div>
-
-
-
 <main role="main" class="container">
     <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
         <div style="margin-right: 8px;">
@@ -69,8 +61,10 @@
                 <text x="50%" y="50%" fill="#FFFF33" th:fill="${message.getColor()}" dy=".3em">32x32</text>
             </svg>
             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark">@<span th:text="${message.getUser()}"></span></strong>
-                <span th:text="${message.getWords()}"></span>
+                <strong class="d-block text-gray-dark">
+                    <span th:text="${message.getWords()}"></span>
+                    <span>  </span>
+                    <span th:text="${message.getNum()}"></span>份</strong>
                 <strong class="d-block text-gray-dark">更新于：<span th:text="${#dates.format(message.getDate(),'yyyy-MM-dd HH:mm:ss')}"></span></strong>
             </p>
         </div>

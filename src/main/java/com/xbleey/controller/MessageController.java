@@ -11,6 +11,7 @@
 package com.xbleey.controller;
 
 import com.xbleey.compent.ColorUtils;
+import com.xbleey.entity.DayMenu;
 import com.xbleey.entity.Message;
 import com.xbleey.exception.MessNullPoint;
 import com.xbleey.service.LoginService;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +53,7 @@ public class MessageController {
 
         /*获取message数据*/
         List<Message> messages = messageService.getAllMessages();
+        DayMenu todayMessages = messageService.getMenuByDays(3);
 
         /*存入页面引擎*/
         model.addAttribute("messages", messages);
@@ -58,14 +61,21 @@ public class MessageController {
         return "message/message";
     }
 
+
     @PostMapping(value = "/info")
-    public String saveMess(HttpServletResponse response, String infoMess, String user) {
+    public String saveMess(HttpServletResponse response, String infoMess, Integer num) {
         if (infoMess == null || infoMess.equals("")) {
             throw new MessNullPoint();
         }
-        Message message = new Message(user, infoMess, new Date(), colorUtils.getOneColor());
+        Message message = new Message(num, infoMess, new Date(), colorUtils.getOneColor());
         messageService.saveMessage(message);
         response.setStatus(201);
+        return "redirect:/index";
+    }
+
+    @GetMapping(value = "/message/delete/{message_id}")
+    public String delete(@PathVariable(value = "message_id") Integer messageId) {
+        messageService.delete(messageId);
         return "redirect:/index";
     }
 }

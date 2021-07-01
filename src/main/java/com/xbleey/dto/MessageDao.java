@@ -13,6 +13,7 @@ package com.xbleey.dto;
 import com.xbleey.entity.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -24,9 +25,13 @@ import java.util.List;
  * @create 2019/10/2 0002
  * @since 1.0.0
  */
+@Repository
 public interface MessageDao extends JpaRepository<Message, Integer> {
-    @Query(value = "select * from message order by date desc limit 3", nativeQuery = true)
-    public List<Message> findThree();
+    @Query(value = "select * from message order by date desc limit 10", nativeQuery = true)
+    public List<Message> findTen();
+
+    @Query(value = "select * from message where date like ?1 order by date desc", nativeQuery = true)
+    public List<Message> getListToday(String startDate);
 
     @Override
     @Query(value = "select * from message order by date desc", nativeQuery = true)
