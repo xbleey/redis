@@ -10,6 +10,7 @@
  */
 package com.xbleey.controller;
 
+import com.sun.istack.NotNull;
 import com.xbleey.compent.SHA1Utils;
 import com.xbleey.entity.User;
 import com.xbleey.service.UserService;
@@ -19,7 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.constraints.NotNull;
 
 /**
  * 〈一句话功能简述〉<br>

@@ -10,6 +10,7 @@
  */
 package com.xbleey.controller;
 
+import com.sun.istack.NotNull;
 import com.xbleey.compent.CookieUtils;
 import com.xbleey.compent.RedisUtils;
 import com.xbleey.compent.SHA1Utils;
@@ -25,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.NotNull;
 
 /**
  * 〈一句话功能简述〉<br>
